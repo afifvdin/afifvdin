@@ -2,26 +2,155 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@font-face {
+  font-family: Integral;
+  src: url("../assets/fonts/IntegralCF-Regular.woff2");
+  font-weight: 400;
+}
+@font-face {
+  font-family: Integral;
+  src: url("../assets/fonts/IntegralCF-Medium.woff2");
+  font-weight: 500;
+}
+@font-face {
+  font-family: Integral;
+  src: url("../assets/fonts/IntegralCF-DemiBold.woff2");
+  font-weight: 600;
+}
+@font-face {
+  font-family: Integral;
+  src: url("../assets/fonts/IntegralCF-Bold.woff2");
+  font-weight: 700;
+}
+@font-face {
+  font-family: Integral;
+  src: url("../assets/fonts/IntegralCF-ExtraBold.woff2");
+  font-weight: 800;
+}
+@font-face {
+  font-family: Integral;
+  src: url("../assets/fonts/IntegralCF-Heavy.woff2");
+  font-weight: 900;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@font-face {
+  font-family: Circular;
+  font-style: normal;
+  src: url("../assets/fonts/CircularStd-Book.woff2");
+  font-weight: 400;
+}
+@font-face {
+  font-family: Circular;
+  font-style: italic;
+  src: url("../assets/fonts/CircularStd-BookItalic.woff2");
+  font-weight: 400;
+}
+@font-face {
+  font-family: Circular;
+  font-style: normal;
+  src: url("../assets/fonts/CircularStd-Medium.woff2");
+  font-weight: 500;
+}
+@font-face {
+  font-family: Circular;
+  font-style: italic;
+  src: url("../assets/fonts/CircularStd-MediumItalic.woff2");
+  font-weight: 500;
+}
+@font-face {
+  font-family: Circular;
+  font-style: normal;
+  src: url("../assets/fonts/CircularStd-Bold.woff2");
+  font-weight: 700;
+}
+@font-face {
+  font-family: Circular;
+  font-style: italic;
+  src: url("../assets/fonts/CircularStd-BoldItalic.woff2");
+  font-weight: 700;
+}
+@font-face {
+  font-family: Circular;
+  font-style: normal;
+  src: url("../assets/fonts/CircularStd-Black.woff2");
+  font-weight: 900;
+}
+@font-face {
+  font-family: Circular;
+  font-style: italic;
+  src: url("../assets/fonts/CircularStd-BlackItalic.woff2");
+  font-weight: 900;
+}
+
+.swiper {
+  height: 100%;
+}
+
+.swiper-slide {
+  height: auto !important;
+}
+.swiper-content {
+  height: 100% !important;
+}
+
+.techstack-animation-first {
+  animation: ts-animation-first linear infinite;
+}
+
+@keyframes ts-animation-first {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.techstack-animation-second {
+  animation: ts-animation-second linear infinite;
+}
+
+@keyframes ts-animation-second {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+.wave {
+  animation-name: wave-animation;
+  animation-duration: 2.5s;
+  animation-iteration-count: infinite;
+  /* animation-iteration-count: 1; */
+  transform-origin: 70% 70%;
+  display: inline-block;
+}
+
+@keyframes wave-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(14deg);
+  }
+  20% {
+    transform: rotate(-8deg);
+  }
+  30% {
+    transform: rotate(14deg);
+  }
+  40% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
