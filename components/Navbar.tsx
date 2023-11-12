@@ -66,7 +66,7 @@ export default function Navbar() {
         <div className="px-8 sm:px-16 py-3 sm:py-0 flex justify-between sm:grid grid-cols-3 items-center border-b bg-white">
           <div className="relative w-10 h-10 sm:w-12 sm:h-12">
             <Image
-              alt="afifcodes"
+              alt="afifvdin"
               src="/images/logo.png"
               fill
               sizes="auto"
@@ -94,7 +94,11 @@ export default function Navbar() {
             >
               <IconMenu2 className="h-4 w-4" />
             </button>
-            <Link href="/CV Afifudin - FrontEnd Developer.pdf" target="_blank" className="hidden sm:flex items-center justify-center gap-2 py-0.5 px-3 text-sm bg-neutral-200 hover:bg-neutral-100 transition-all">
+            <Link
+              href="/CV Afifudin - FrontEnd Developer.pdf"
+              target="_blank"
+              className="hidden sm:flex items-center justify-center gap-2 py-0.5 px-3 text-sm bg-neutral-200 hover:bg-neutral-100 transition-all"
+            >
               <IconDownload className="h-3 w-3" />
               <span>Resume</span>
             </Link>
@@ -130,7 +134,11 @@ export default function Navbar() {
           >
             About Me
           </Link>
-          <Link href="/CV Afifudin - FrontEnd Developer.pdf" target="_blank" className="w-full p-2 flex items-center justify-center gap-2 bg-white hover:bg-neutral-200 transition-all">
+          <Link
+            href="/CV Afifudin - FrontEnd Developer.pdf"
+            target="_blank"
+            className="w-full p-2 flex items-center justify-center gap-2 bg-white hover:bg-neutral-200 transition-all"
+          >
             <span>Resume</span>
             <IconDownload className="h-4 w-4" />
           </Link>

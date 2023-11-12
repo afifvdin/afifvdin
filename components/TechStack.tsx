@@ -57,7 +57,7 @@ export default function TechStack() {
                 <Image
                   src={`/images/${v}.png`}
                   fill
-                  alt="afifcodes"
+                  alt="afifvdin"
                   className="object-contain"
                   sizes="auto"
                 />
@@ -80,7 +80,7 @@ export default function TechStack() {
                 <Image
                   src={`/images/${v}.png`}
                   fill
-                  alt="afifcodes"
+                  alt="afifvdin"
                   className="object-contain"
                   sizes="auto"
                 />

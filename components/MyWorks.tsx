@@ -165,7 +165,7 @@ const Card = ({ title, desc, image_url, link, platform }: CardPropsType) => {
       <div className="aspect-[4/5] relative">
         <Image
           src={image_url}
-          alt="afifcodes"
+          alt="afifvdin"
           className="object-cover"
           fill
           sizes="auto"

@@ -1,7 +1,7 @@
-import { barlow } from "@/app/fonts";
-import { IconArrowNarrowRight } from "@tabler/icons-react";
-import Image from "next/image";
-import Link from "next/link";
+import { barlow } from "@/app/fonts"
+import { IconArrowNarrowRight } from "@tabler/icons-react"
+import Image from "next/image"
+import Link from "next/link"
 
 export default function Experience() {
   return (
@@ -18,7 +18,7 @@ export default function Experience() {
           <Image
             src="/images/lenjhelenan.png"
             fill
-            alt="afifcodes"
+            alt="afifvdin"
             sizes="auto"
             className="object-cover"
           />
@@ -28,7 +28,7 @@ export default function Experience() {
           <Image
             src="/images/unvolds-web.png"
             fill
-            alt="afifcodes"
+            alt="afifvdin"
             sizes="auto"
             className="object-cover"
           />
@@ -40,7 +40,7 @@ export default function Experience() {
           <Image
             src="/images/dovtron.png"
             fill
-            alt="afifcodes"
+            alt="afifvdin"
             sizes="auto"
             className="object-cover"
           />
@@ -50,13 +50,13 @@ export default function Experience() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 interface ButtonInterface {
-  invert?: boolean;
-  url: string;
-  children: React.ReactNode;
+  invert?: boolean
+  url: string
+  children: React.ReactNode
 }
 
 const Button = ({ invert, url, children }: ButtonInterface) => {
@@ -78,5 +78,5 @@ const Button = ({ invert, url, children }: ButtonInterface) => {
         <IconArrowNarrowRight className="h-6 w-6" />
       </Link>
     </div>
-  );
-};
+  )
+}
