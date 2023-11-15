@@ -31,10 +31,10 @@ export default function AboutMe() {
           </p>
           <div className="flex items-center gap-4">
             <Link
-              href="mailto:work.afifudin@gmail.com"
+              href="mailto:afifudin.fdn@gmail.com"
               className="underline underline-offset-8 font-medium"
             >
-              work.afifudin@gmail.com
+              afifudin.fdn@gmail.com
             </Link>
             <Link
               href="https://www.linkedin.com/in/afifudin/"
