@@ -1,60 +1,60 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import Link from "next/link"
-import { MouseEvent, useEffect, useState } from "react"
-import { IconMenu2, IconDownload, IconX } from "@tabler/icons-react"
+import Image from "next/image";
+import Link from "next/link";
+import { MouseEvent, useEffect, useState } from "react";
+import { IconMenu2, IconDownload, IconX } from "@tabler/icons-react";
 
 export default function Navbar() {
-  const [showMenu, setShowMenu] = useState(false)
-  const [animateMenu, setAnimateMenu] = useState(false)
-  const [prevScrollPos, setPrevScrollPos] = useState(0)
-  const [visible, setVisible] = useState(true)
+  const [showMenu, setShowMenu] = useState(false);
+  const [animateMenu, setAnimateMenu] = useState(false);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [visible, setVisible] = useState(true);
 
   const doShowMenu = () => {
-    document.body.style.overflow = "hidden"
-    setShowMenu(true)
-  }
+    document.body.style.overflow = "hidden";
+    setShowMenu(true);
+  };
 
   const doCloseMenu = () => {
-    document.body.style.overflow = "auto"
-    setAnimateMenu(false)
-  }
+    document.body.style.overflow = "auto";
+    setAnimateMenu(false);
+  };
 
   const doStopPropagation = (e: MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation()
-  }
+    e.stopPropagation();
+  };
 
   useEffect(() => {
     if (showMenu) {
-      setAnimateMenu(true)
+      setAnimateMenu(true);
     }
-  }, [showMenu])
+  }, [showMenu]);
 
   useEffect(() => {
     if (!animateMenu) {
       setTimeout(() => {
-        setShowMenu(false)
-      }, 300)
+        setShowMenu(false);
+      }, 300);
     }
-  }, [animateMenu])
+  }, [animateMenu]);
 
   const doHandleScroll = () => {
-    const currentScrollPos = window.scrollY
+    const currentScrollPos = window.scrollY;
 
     if (currentScrollPos > prevScrollPos) {
-      setVisible(false)
+      setVisible(false);
     } else {
-      setVisible(true)
+      setVisible(true);
     }
 
-    setPrevScrollPos(currentScrollPos)
-  }
+    setPrevScrollPos(currentScrollPos);
+  };
 
   useEffect(() => {
-    window.addEventListener("scroll", doHandleScroll)
-    return () => window.removeEventListener("scroll", doHandleScroll)
-  }, [prevScrollPos])
+    window.addEventListener("scroll", doHandleScroll);
+    return () => window.removeEventListener("scroll", doHandleScroll);
+  }, [prevScrollPos]);
 
   return (
     <>
@@ -95,7 +95,7 @@ export default function Navbar() {
               <IconMenu2 className="h-4 w-4" />
             </button>
             <Link
-              href="/CV Afifudin - FrontEnd Developer.pdf"
+              href="/CV Afifudin - Software Engineer.pdf"
               target="_blank"
               className="hidden sm:flex items-center justify-center gap-2 py-0.5 px-3 text-sm bg-neutral-200 hover:bg-neutral-100 transition-all"
             >
@@ -135,7 +135,7 @@ export default function Navbar() {
             About Me
           </Link>
           <Link
-            href="/CV Afifudin - FrontEnd Developer.pdf"
+            href="/CV Afifudin - Software Engineer.pdf"
             target="_blank"
             className="w-full p-2 flex items-center justify-center gap-2 bg-white hover:bg-neutral-200 transition-all"
           >
@@ -145,5 +145,5 @@ export default function Navbar() {
         </div>
       </div>
     </>
-  )
+  );
 }

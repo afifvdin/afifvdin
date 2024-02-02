@@ -1,3 +1,3 @@
 👋 Hi, I’m Afifudin
 
-Frontend • Backend • Flutter
+yet another engineer
