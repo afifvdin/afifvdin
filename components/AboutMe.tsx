@@ -18,7 +18,7 @@ export default function AboutMe() {
           <p className="font-normal sm:font-medium mt-8 mb-24 leading-loose">
             I{"'"}m all about crafting smooth tech-user connections. As a
             software engineer, I specialize in building robust systems that
-            seamlessly
+            seamlessly{" "}
             <span className="underline underline-offset-4">
               blend design and functionality for a user-friendly experience
             </span>
