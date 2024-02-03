@@ -1,7 +1,7 @@
-import { barlow } from "@/app/fonts"
-import Link from "next/link"
-import BackToTop from "./BackToTop"
-import { IconExternalLink } from "@tabler/icons-react"
+import { barlow } from "@/app/fonts";
+import Link from "next/link";
+import BackToTop from "./BackToTop";
+import { IconExternalLink } from "@tabler/icons-react";
 
 export default function AboutMe() {
   return (
@@ -13,15 +13,14 @@ export default function AboutMe() {
         <div className="mt-12 font-circular max-w-2xl">
           <p className="text-5xl wave">👋</p>
           <p className="font-bold text-xl sm:text-3xl md:text-5xl leading-tight">
-            Hey there *waves*, my name is Afif, software engineer, mostly
-            frontend & mobile dev
+            Hey there *waves*, my name is Afifudin, Software Engineer
           </p>
           <p className="font-normal sm:font-medium mt-8 mb-24 leading-loose">
-            I&apos;m passionate about creating seamless connections between
-            technology and users. Specializing in frontend and mobile
-            development, I excel at building user-friendly interfaces that{" "}
+            I{"'"}m all about crafting smooth tech-user connections. As a
+            software engineer, I specialize in building robust systems that
+            seamlessly
             <span className="underline underline-offset-4">
-              bridge the gap between design and functionality
+              blend design and functionality for a user-friendly experience
             </span>
             . My commitment to innovation and precision can elevate your digital
             solutions. But enough about me,{" "}
@@ -48,5 +47,5 @@ export default function AboutMe() {
       </div>
       <BackToTop />
     </div>
-  )
+  );
 }
