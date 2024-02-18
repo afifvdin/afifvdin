@@ -3,7 +3,7 @@ import "./globals.css"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Afifudin | afifvdin",
+  title: "Afifvdin | afifvdin",
   description: "//.",
 }
 
