@@ -54,7 +54,7 @@ export default function Home() {
                 </span>
                 <br />
                 <span className="text-xs text-foreground/50">
-                  Next.js, TailwindCSS and Python.
+                  Next.js, TailwindCSS and Python (GCP).
                 </span>
               </p>
             </div>
