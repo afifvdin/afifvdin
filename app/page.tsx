@@ -4,7 +4,7 @@ import Link from "next/link"
 
 export default function Home() {
   return (
-    <div className="h-full font-medium dark:font-normal bg-neutral-100 dark:bg-neutral-950 flex flex-col items-center justify-center">
+    <div className="h-full font-normal bg-neutral-100 dark:bg-neutral-950 flex flex-col items-center justify-center">
       <div className="w-full overflow-y-auto">
         <div className="max-w-2xl mx-auto px-4 py-8">
           <div className="flex items-center justify-between gap-4">
@@ -136,7 +136,7 @@ export default function Home() {
           </div>
           <br />
           <br />
-          <div className="flex items-center gap-4 flex-wrap">
+          <div className="flex flex-wrap items-center gap-4 flex-wrap">
             <Link
               href="mailto:afifudin.fdn@gmail.com"
               className="flex items-center gap-1 justify-center text-foreground/50 hover:text-foreground transition-all"
