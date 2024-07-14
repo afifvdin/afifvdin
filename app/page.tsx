@@ -24,7 +24,7 @@ export default function Home() {
           </p>
           <br />
           <br />
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-8">
             <div>
               <h2 className="text-sm text-foreground/50 mb-4">Building</h2>
               <h3 className="underline mb-2">
@@ -136,7 +136,7 @@ export default function Home() {
           </div>
           <br />
           <br />
-          <div className="flex flex-wrap items-center gap-4 flex-wrap">
+          <div className="flex items-center gap-4 flex-wrap">
             <Link
               href="mailto:afifudin.fdn@gmail.com"
               className="flex items-center gap-1 justify-center text-foreground/50 hover:text-foreground transition-all"
