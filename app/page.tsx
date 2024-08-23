@@ -160,14 +160,6 @@ export default function Home() {
               <span>Github</span>
               <ArrowUpRight className="size-4" />
             </Link>
-            <Link
-              href="https://x.com/afifvdin"
-              target="_blank"
-              className="flex items-center gap-1 justify-center text-foreground/50 hover:text-foreground transition-all"
-            >
-              <span>X (Twitter)</span>
-              <ArrowUpRight className="size-4" />
-            </Link>
           </div>
         </div>
       </div>
