@@ -6,13 +6,13 @@ export default function Navbar() {
     <nav className="z-50 sticky top-0 py-4 bg-background/50 backdrop-blur-xl flex items-center justify-between">
       <ul className="flex items-center gap-4 sm:gap-8">
         <li className="cursor-pointer">
-          <Link href="#building" className="underline">
-            #building
+          <Link href="#works" className="underline">
+            #works
           </Link>
         </li>
         <li className="cursor-pointer">
-          <Link href="#works" className="underline">
-            #works
+          <Link href="#building" className="underline">
+            #building
           </Link>
         </li>
         <li className="cursor-pointer">

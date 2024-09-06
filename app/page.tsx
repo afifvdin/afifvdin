@@ -36,42 +36,6 @@ export default function Home() {
           </li>
         </ul>
       </div>
-      <span id="building" />
-      <h2 className="mt-20 text-lg font-medium">Building</h2>
-      <br />
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-8 sm:gap-y-4 gap-x-4 sm:gap-8">
-        <ProjectCard
-          url="https://catsplash.afifvdin.dev"
-          imageUrl="/catsplash.png"
-          title="Catsplash"
-          year=""
-          description="Search for cats or make a meme"
-          stacks={[
-            "Next.js",
-            "Tailwind CSS",
-            "Neon Postgres",
-            "Drizzle",
-            "Lucia",
-          ]}
-        />
-        <ProjectCard
-          url="https://yer.afifvdin.dev"
-          imageUrl="/yer.png"
-          title="Yer"
-          year=""
-          description="
-Part-of-Speech Tagger for your dataset."
-          stacks={["Next.js", "Tailwind CSS"]}
-        />
-        <ProjectCard
-          url="https://tagger.afifvdin.dev"
-          imageUrl="/tagger.png"
-          title="Tagger"
-          year=""
-          description="AI Part-of-Speech Tagger for your tweets."
-          stacks={["Next.js", "Tailwind CSS", "Python (GCP)"]}
-        />
-      </div>
       <span id="works" />
       <h2 className="mt-20 text-lg font-medium">Works</h2>
       <br />
@@ -119,6 +83,42 @@ Part-of-Speech Tagger for your dataset."
           year="2022"
           description="Automate Lab Management."
           stacks={["Next.js", "Tailwind CSS", "Node.js", "MongoDB"]}
+        />
+      </div>
+      <span id="building" />
+      <h2 className="mt-20 text-lg font-medium">Building</h2>
+      <br />
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-8 sm:gap-y-4 gap-x-4 sm:gap-8">
+        <ProjectCard
+          url="https://catsplash.afifvdin.dev"
+          imageUrl="/catsplash.png"
+          title="Catsplash"
+          year=""
+          description="Search for cats or make a meme"
+          stacks={[
+            "Next.js",
+            "Tailwind CSS",
+            "Neon Postgres",
+            "Drizzle",
+            "Lucia",
+          ]}
+        />
+        <ProjectCard
+          url="https://yer.afifvdin.dev"
+          imageUrl="/yer.png"
+          title="Yer"
+          year=""
+          description="
+Part-of-Speech Tagger for your dataset."
+          stacks={["Next.js", "Tailwind CSS"]}
+        />
+        <ProjectCard
+          url="https://tagger.afifvdin.dev"
+          imageUrl="/tagger.png"
+          title="Tagger"
+          year=""
+          description="AI Part-of-Speech Tagger for your tweets."
+          stacks={["Next.js", "Tailwind CSS", "Python (GCP)"]}
         />
       </div>
       <span id="opensource" />
