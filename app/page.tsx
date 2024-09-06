@@ -89,9 +89,9 @@ export default function Home() {
       <h2 className="mt-20 text-lg font-medium">Building</h2>
       <br />
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-8 sm:gap-y-4 gap-x-4 sm:gap-8">
-        {/* <ProjectCard
+        <ProjectCard
           url="https://catsplash.afifvdin.dev"
-          imageUrl="/yer.png"
+          imageUrl="/catsplash.png"
           title="Catsplash"
           year=""
           description="Search for cats or make a meme"
@@ -102,7 +102,7 @@ export default function Home() {
             "Drizzle",
             "Lucia",
           ]}
-        /> */}
+        />
         <ProjectCard
           url="https://yer.afifvdin.dev"
           imageUrl="/yer.png"
