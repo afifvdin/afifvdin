@@ -20,13 +20,14 @@ export default function ProjectCard({
 }: Props) {
   return (
     <Link href={url} target="_blank" className="group">
-      <div className="relative w-full aspect-[16/10] bg-red-500 rounded-lg sm:rounded-xl mb-2">
+      <div className="relative w-full aspect-[16/10] rounded-lg sm:rounded-xl mb-2">
         <Image
           src={imageUrl}
           fill
           alt="afifudin"
-          className="object-cover rounded-lg"
+          className="object-cover rounded-lg z-10"
         />
+        <div className="absolute top-0 left-0 w-full h-full rounded-lg bg-neutral-200 dark:bg-neutral-700 animate-pulse" />
       </div>
       <div className="flex items-center justify-between gap-2">
         <h3 className="dark:font-medium group-hover:underline">{title}</h3>
