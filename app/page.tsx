@@ -5,7 +5,7 @@ import Navbar from "./_components/navbar"
 
 export default function Home() {
   return (
-    <div className="max-w-2xl mx-auto px-4 sm:px-8 pb-48">
+    <div className="max-w-3xl mx-auto px-4 sm:px-16 pb-48">
       <Navbar />
       <h1 className="mt-8 text-lg font-medium">Muhammad Afifudin Abdullah</h1>
       <p className="text-neutral-500 dark:text-neutral-400 text-lg font-medium">
