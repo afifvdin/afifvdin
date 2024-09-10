@@ -85,8 +85,8 @@ export default function Home() {
           stacks={["Next.js", "Tailwind CSS", "Node.js", "MongoDB"]}
         />
       </div>
-      <span id="building" />
-      <h2 className="mt-20 text-lg font-medium">Building</h2>
+      <span id="projects" />
+      <h2 className="mt-20 text-lg font-medium">Projects</h2>
       <br />
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-8 sm:gap-y-4 gap-x-4 sm:gap-8">
         <ProjectCard

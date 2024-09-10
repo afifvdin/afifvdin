@@ -11,8 +11,8 @@ export default function Navbar() {
           </Link>
         </li>
         <li className="cursor-pointer">
-          <Link href="#building" className="underline">
-            #building
+          <Link href="#projects" className="underline">
+            #projects
           </Link>
         </li>
         <li className="cursor-pointer">
