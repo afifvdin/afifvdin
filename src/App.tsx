@@ -52,7 +52,7 @@ export default function Home() {
           company="Feedloop.ai"
           start="Sep 2024"
           role="Fullstack Engineer"
-          link="https://feedloop.ai"
+          url="https://feedloop.ai"
         />
         <span id="projects" />
         <h2 className="mt-12 text-lg font-medium sm:mt-20">Projects</h2>

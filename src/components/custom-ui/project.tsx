@@ -27,7 +27,7 @@ export default function Project({
         <div className="grow">
           <div className="flex items-center justify-between gap-2">
             <h3 className="flex items-center group-hover:underline dark:font-medium">
-              {title} <LinkIcon className="ml-2 size-2" />
+              {title} <LinkIcon className="ml-1 size-2 sm:ml-2" />
             </h3>
             <p className="text-xs text-neutral-500 dark:text-neutral-400">
               {year}

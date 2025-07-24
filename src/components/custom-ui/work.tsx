@@ -6,24 +6,25 @@ export function Work({
   start,
   end = "Present",
   role,
-  link = "#",
+  url = "#",
 }: {
   company: string;
   start: string;
   end?: string;
   role: string;
-  link?: string;
+  url?: string;
 }) {
   return (
-    <a className="group py-4" href={link}>
+    <a className="group py-4" href={url}>
       <div className="flex items-center justify-between gap-4">
         <p
           className={cn(
             "flex items-center text-base",
-            link !== "#" && "group-hover:underline",
+            url !== "#" && "group-hover:underline",
           )}
         >
-          {company} {link !== "#" && <LinkIcon className="ml-2 size-2.5" />}
+          {company}{" "}
+          {url !== "#" && <LinkIcon className="ml-1 size-2.5 sm:ml-2" />}
         </p>
         <p className="text-muted-foreground">
           {start} - {end}
@@ -32,7 +33,7 @@ export function Work({
       <p
         className={cn(
           "text-muted-foreground",
-          link !== "#" && "group-hover:underline",
+          url !== "#" && "group-hover:underline",
         )}
       >
         {role}
