@@ -25,7 +25,7 @@ export default function Home() {
             Feedloop.ai
           </a>{" "}
           building AI-based lending system and towing app. I also love ricing my
-          linux the way i love to use.
+          linux setup as much as I enjoy using it.
         </p>
         <div className="mt-8 flex items-center justify-between py-2">
           <ul className="flex items-center gap-8">
@@ -47,7 +47,7 @@ export default function Home() {
           </ul>
         </div>
         <span id="work-experience" />
-        <h2 className="mt-12 text-lg font-medium sm:mt-20">Work Experience</h2>
+        <h2 className="mt-12 text-lg font-medium sm:mt-20">Work Experiences</h2>
         <Work
           company="Feedloop.ai"
           start="Sep 2024"
