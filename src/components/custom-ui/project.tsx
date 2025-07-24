@@ -17,10 +17,10 @@ export default function Project({
 }: Props) {
   return (
     <a href={url} target="_blank" className="group">
-      <div className="flex w-full gap-2">
-        <div className="relative top-0 mb-2 aspect-[16/10] w-full max-w-36 overflow-hidden rounded-lg border transition-all group-hover:-top-1 group-hover:shadow-xl dark:shadow-none">
+      <div className="w-full gap-2 sm:flex">
+        <div className="relative top-0 mb-2 aspect-[16/10] w-full overflow-hidden rounded-lg border transition-all group-hover:-top-1 group-hover:shadow-xl sm:max-w-36 dark:shadow-none">
           <img src={imageUrl} alt="afifvdin" className="z-10 object-cover" />
-          <div className="absolute top-0 left-0 -z-10 h-full w-full animate-pulse bg-neutral-200 dark:bg-neutral-700" />
+          <div className="absolute top-0 left-0 -z-10 aspect-[16/10] w-full animate-pulse bg-neutral-200 dark:bg-neutral-700" />
         </div>
         <div className="grow">
           <div className="flex items-center justify-between gap-2">

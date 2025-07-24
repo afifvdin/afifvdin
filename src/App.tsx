@@ -47,16 +47,16 @@ export default function Home() {
           </ul>
         </div>
         <span id="work-experience" />
-        <h2 className="mt-20 text-lg font-medium">Work Experience</h2>
+        <h2 className="mt-12 text-lg font-medium sm:mt-20">Work Experience</h2>
         <Work
           company="Feedloop.ai"
           start="Sep 2024"
           role="Fullstack Engineer"
         />
         <span id="projects" />
-        <h2 className="mt-20 text-lg font-medium">Projects</h2>
+        <h2 className="mt-12 text-lg font-medium sm:mt-20">Projects</h2>
         <br />
-        <div className="flex flex-col gap-6">
+        <div className="grid grid-cols-2 flex-col gap-x-2 gap-y-6 sm:flex sm:grid-cols-1 sm:gap-6">
           <Project
             url="https://yer.afifvdin.dev"
             imageUrl="/yer.png"
@@ -112,7 +112,7 @@ Part-of-Speech Tagger for your dataset."
           />
         </div>
         <span id="open-source" />
-        <h2 className="mt-20 text-lg font-medium">Open Source</h2>
+        <h2 className="mt-12 text-lg font-medium sm:mt-20">Open Source</h2>
         <br />
         <OpenSource
           url="https://www.npmjs.com/package/@cspell/dict-id-id"
