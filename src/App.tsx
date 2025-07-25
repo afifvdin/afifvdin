@@ -59,7 +59,7 @@ export default function Home() {
         <br />
         <div className="grid grid-cols-2 flex-col gap-x-2 gap-y-6 sm:flex sm:grid-cols-1 sm:gap-6">
           <Project
-            url="https://yer.afifvdin.dev"
+            url="https://yer.afifvdin.com"
             imageUrl="/yer.png"
             title="Yer"
             year="2024"
@@ -68,7 +68,7 @@ Part-of-Speech Tagger for your dataset."
             stacks={["Next.js", "Tailwind CSS"]}
           />
           <Project
-            url="https://tagger.afifvdin.dev"
+            url="https://tagger.afifvdin.com"
             imageUrl="/tagger.png"
             title="Tagger"
             year="2024"
@@ -76,7 +76,7 @@ Part-of-Speech Tagger for your dataset."
             stacks={["Next.js", "Tailwind CSS", "Python (GCP)"]}
           />
           <Project
-            url="https://luct.afifvdin.dev"
+            url="https://luct.afifvdin.com"
             imageUrl="/luct.png"
             title="Luct"
             year="2024"
@@ -90,7 +90,7 @@ Part-of-Speech Tagger for your dataset."
             ]}
           />
           <Project
-            url="https://unvolds.afifvdin.dev"
+            url="https://unvolds.afifvdin.com"
             imageUrl="/unvolds.png"
             title="Unvolds"
             year="2023"
