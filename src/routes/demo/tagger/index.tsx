@@ -71,10 +71,7 @@ function RouteComponent() {
             </Button>
           </div>
           <div className="mt-4 flex flex-wrap gap-2">
-            {[
-              ["aku", "NN"],
-              ["suka", "NNP"],
-            ].map(([word, tag], i) => {
+            {predict.data?.result.map(([word, tag], i) => {
               return (
                 <p
                   key={i}
