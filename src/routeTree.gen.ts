@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProjectsIndexRouteImport } from './routes/projects/index'
 import { Route as CraftsIndexRouteImport } from './routes/crafts/index'
+import { Route as DemoTaggerIndexRouteImport } from './routes/demo/tagger/index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,35 +29,44 @@ const CraftsIndexRoute = CraftsIndexRouteImport.update({
   path: '/crafts/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DemoTaggerIndexRoute = DemoTaggerIndexRouteImport.update({
+  id: '/demo/tagger/',
+  path: '/demo/tagger/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/crafts': typeof CraftsIndexRoute
   '/projects': typeof ProjectsIndexRoute
+  '/demo/tagger': typeof DemoTaggerIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/crafts': typeof CraftsIndexRoute
   '/projects': typeof ProjectsIndexRoute
+  '/demo/tagger': typeof DemoTaggerIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/crafts/': typeof CraftsIndexRoute
   '/projects/': typeof ProjectsIndexRoute
+  '/demo/tagger/': typeof DemoTaggerIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/crafts' | '/projects'
+  fullPaths: '/' | '/crafts' | '/projects' | '/demo/tagger'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/crafts' | '/projects'
-  id: '__root__' | '/' | '/crafts/' | '/projects/'
+  to: '/' | '/crafts' | '/projects' | '/demo/tagger'
+  id: '__root__' | '/' | '/crafts/' | '/projects/' | '/demo/tagger/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CraftsIndexRoute: typeof CraftsIndexRoute
   ProjectsIndexRoute: typeof ProjectsIndexRoute
+  DemoTaggerIndexRoute: typeof DemoTaggerIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -82,6 +92,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CraftsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/demo/tagger/': {
+      id: '/demo/tagger/'
+      path: '/demo/tagger'
+      fullPath: '/demo/tagger'
+      preLoaderRoute: typeof DemoTaggerIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CraftsIndexRoute: CraftsIndexRoute,
   ProjectsIndexRoute: ProjectsIndexRoute,
+  DemoTaggerIndexRoute: DemoTaggerIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
