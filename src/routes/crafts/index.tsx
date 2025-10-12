@@ -22,6 +22,13 @@ const crafts = [
     description: "Mini grep written in rust",
     videoUrl: "/minigrep.mp4",
     url: "https://github.com/afifvdin/minigrep-rs",
+    newTab: true,
+  },
+  {
+    name: "Tagger",
+    description: "Part-of-speech tagger",
+    videoUrl: "/tagger.mp4",
+    url: "/demo/tagger",
   },
 ];
 
@@ -36,7 +43,7 @@ function RouteComponent() {
         {crafts.map((craft, i) => {
           return (
             <a
-              target="_blank"
+              target={craft.newTab ? "_blank" : "_self"}
               href={craft.url}
               key={i}
               className="flex flex-col gap-4 sm:flex-row"
