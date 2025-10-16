@@ -13,7 +13,7 @@ export function WorkExperience() {
             <p>Feedloop.ai</p>
             <p className="text-muted-foreground">Fullstack Engineer</p>
           </div>
-          <p>Sep 2024 - Present</p>
+          <p>Sep 2024 - Sep 2025</p>
         </div>
       </div>
     </div>
