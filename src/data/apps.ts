@@ -149,6 +149,7 @@ export const apps: App[] = [
     platform: "macOS",
     status: "open-source",
     year: 2026,
+    icon: "/apps/kave/icon.png",
     tint: "#f5e6bf",
     description: [
       "A keystroke visualizer for macOS. Shows the keys you press on screen, for screencasts, live coding and presentations.",
