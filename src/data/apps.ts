@@ -177,6 +177,36 @@ export const apps: App[] = [
       alt: "Kave's keycaps showing shortcuts like command shift K and option up times two while they edit code in an editor",
     },
   },
+  {
+    slug: "db-studio",
+    name: "DB Studio",
+    tagline: "How heavy is that query?",
+    platform: "macOS",
+    status: "building",
+    year: 2026,
+    icon: "/apps/db-studio/icon.png",
+    tint: "#dfe8f1",
+    description: [
+      "A Mac app for seeing how heavy a query is, on Postgres and TigerGraph.",
+      "For Postgres it runs EXPLAIN ANALYZE and lays the plan out as a tree, with the slowest nodes at the top and a badge wherever the planner's row estimate was far off. For TigerGraph it profiles each statement and samples the server's memory while the query runs, so you see the real peak next to the smaller number the profiler reports.",
+    ],
+    features: [
+      "Postgres plan tree with the hottest nodes first",
+      "Misestimate badges, buffers and sorts that spill to disk",
+      "Workload view from pg_stat_statements",
+      "TigerGraph profiler with a per-statement breakdown",
+      "True memory peak and memory over time, not just what the profiler reports",
+      "Profiles queries that aren't installed by installing a temporary copy",
+      "History of every run, and side-by-side compare",
+    ],
+    links: [],
+    media: {
+      type: "video",
+      src: "/apps/db-studio/preview.mp4",
+      poster: "/apps/db-studio/poster.jpg",
+      alt: "DB Studio showing a Postgres query plan with misestimate badges, a sort spilling to disk, two runs compared, the workload view, and a TigerGraph profile where the profiler reports 1 MB but the process grew 34 MB",
+    },
+  },
 ];
 
 export function getApp(slug: string) {
