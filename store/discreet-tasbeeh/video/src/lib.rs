@@ -10,27 +10,36 @@ const SERIF: &str = "Instrument Serif";
 // The website's dark palette: warm off-white text and a muted warm grey.
 const CREAM: &str = "#EFE9DD";
 const MUTED: &str = "#8C857A";
-const OUTLINE: &str = "#2A2A2A";
 
 pub const FOOTAGE: &str = "recording-30fps.mp4";
 const FOOTAGE_FRAMES: usize = 534;
 
-/// A phone screen showing a real screenshot, with a thin outline so the black UI reads as a phone.
-fn phone<'a>(ctx: &FFramesContext<'a, '_>, id: &'a str, image: &str, x: f32, y: f32, w: f32, h: f32) -> Svgr<'a> {
+/// A real screenshot inside Apple's product bezel for the device it was captured on.
+fn phone<'a>(ctx: &FFramesContext<'a, '_>, image: &str, x: f32, y: f32, w: f32, h: f32) -> Svgr<'a> {
     let Some(shot) = ctx.get_image(image) else { return Svgr::empty() };
-    let r = w * 0.135;
-    let stroke = (w * 0.006).max(3.0);
-    let (iw, ih) = (w * 0.31, w * 0.092);
+    // Bezel PNG, its size, and where the screen sits in it (all in px at native screen scale).
+    let (bezel, bw, bh, sx, sy, sw) = if image.starts_with("17promax") {
+        ("bezel-iphone17promax-deepblue.png", 1470., 3000., 75., 66., 1320.)
+    } else {
+        ("bezel-iphone17-black.png", 1350., 2760., 72., 69., 1206.)
+    };
+    let s = w / sw;
+    let frame = ctx
+        .get_image(bezel)
+        .map(|b| fframes::svgr!(<image href={b.href()} x={x - sx * s} y={y - sy * s} width={bw * s} height={bh * s} />))
+        .unwrap_or_else(Svgr::empty);
+    let id = format!("screen-{x}");
+    // Rounds the corners so they stay under the bezel (its opening has a ~187 px radius).
+    let r = 150. * s;
     fframes::svgr!(
         <g>
             <defs>
-                <clipPath id={id}>
+                <clipPath id={id.clone()}>
                     <rect x={x} y={y} width={w} height={h} rx={r} />
                 </clipPath>
             </defs>
             <image href={shot.href()} x={x} y={y} width={w} height={h} clip-path={format!("url(#{id})")} preserveAspectRatio="none" />
-            <rect x={x + w / 2. - iw / 2.} y={y + w * 0.027} width={iw} height={ih} rx={ih / 2.} fill="#0A0A0A" />
-            <rect x={x - stroke / 2.} y={y - stroke / 2.} width={w + stroke} height={h + stroke} rx={r + stroke / 2.} fill="none" stroke={OUTLINE} stroke-width={stroke} />
+            {frame}
         </g>
     )
 }
@@ -113,9 +122,9 @@ fn search_results<'a>(ctx: &FFramesContext<'a, '_>, w: f32, h: f32) -> Svgr<'a> 
             <text x={w / 2.} y={h * 0.165} font-family={SERIF} font-size={h * 0.062} fill={CREAM} text-anchor="middle">
                 "Count quietly. No one notices."
             </text>
-            {phone(ctx, "p1", "17-count7.png", x0, top, pw, ph)}
-            {phone(ctx, "p2", "17-count33.png", x0 + pw + gap, top, pw, ph)}
-            {phone(ctx, "p3", "17-count100.png", x0 + 2. * (pw + gap), top, pw, ph)}
+            {phone(ctx, "17-count7.png", x0, top, pw, ph)}
+            {phone(ctx, "17-count33.png", x0 + pw + gap, top, pw, ph)}
+            {phone(ctx, "17-count100.png", x0 + 2. * (pw + gap), top, pw, ph)}
         </g>
     )
 }
@@ -127,13 +136,16 @@ fn shot<'a>(ctx: &FFramesContext<'a, '_>, w: f32, h: f32, lines: [&'static str; 
     let y1 = h * 0.085 + fs;
     let y2 = y1 + fs * 1.12;
     let top = y2 + h * 0.045;
-    let pw = (w * 0.78).min((h - top - h * 0.045) * sw / sh);
+    // The bezel adds ~2.6% above and below the screen; fit the whole phone between the margins.
+    let pad = 69. / 2622.;
+    let pw = (w * 0.78).min((h - top - h * 0.045) / (1. + 2. * pad) * sw / sh);
     let ph = pw * sh / sw;
+    let top = top + ph * pad;
     fframes::svgr!(
         <g>
             <text x={w / 2.} y={y1} font-family={SERIF} font-size={fs} fill={CREAM} text-anchor="middle">{lines[0]}</text>
             <text x={w / 2.} y={y2} font-family={SERIF} font-size={fs} fill={CREAM} text-anchor="middle">{lines[1]}</text>
-            {phone(ctx, "screen", image, (w - pw) / 2., top, pw, ph)}
+            {phone(ctx, image, (w - pw) / 2., top, pw, ph)}
         </g>
     )
 }

@@ -83,10 +83,10 @@ export function AppMedia({
         poster={media.poster}
         aria-label={media.alt}
         className={cn(
-          "bg-black/10 shadow-[0_12px_30px_-12px_rgb(60_40_20/0.35)]",
+          // Phone videos have the iPhone frame and card colour baked in.
           media.phone
-            ? "mx-auto w-48 rounded-[1.75rem] border-[5px] border-neutral-900"
-            : "w-full rounded-xl",
+            ? "mx-auto w-52"
+            : "w-full rounded-xl bg-black/10 shadow-[0_12px_30px_-12px_rgb(60_40_20/0.35)]",
           className,
         )}
       />
@@ -97,10 +97,10 @@ export function AppMedia({
       src={media.src}
       alt={media.alt}
       className={cn(
-        "shadow-[0_12px_30px_-12px_rgb(60_40_20/0.35)]",
+        // Phone screenshots have the iPhone frame baked in.
         media.phone
-          ? "mx-auto w-48 rounded-[1.75rem] border-[5px] border-neutral-900"
-          : "w-full rounded-xl",
+          ? "mx-auto w-52"
+          : "w-full rounded-xl shadow-[0_12px_30px_-12px_rgb(60_40_20/0.35)]",
         className,
       )}
     />

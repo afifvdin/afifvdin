@@ -97,7 +97,7 @@ export const apps: App[] = [
     links: [],
     media: {
       type: "image",
-      src: "/apps/discreet-tasbeeh/screenshot.jpg",
+      src: "/apps/discreet-tasbeeh/screenshot.png",
       alt: "Discreet Tasbeeh showing a count of 33 on a black screen",
       phone: true,
     },

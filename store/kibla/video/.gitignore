@@ -1,3 +1,5 @@
 target/
 # Apple font, copied from Terminal.app (see README)
 assets/SF-Mono-Bold.otf
+# Apple Product Bezels (Apple Design Resources license: no redistribution)
+assets/bezel-*.png

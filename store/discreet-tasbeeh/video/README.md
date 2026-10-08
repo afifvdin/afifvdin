@@ -6,6 +6,15 @@ screenshots and app preview from the real captures in `assets/`.
 `ASSET` picks the output: `header`, `search`, `shot-6.3-N`, `shot-6.9-N`, `shot-duo-N`
 (N = 1..3) or `preview`.
 
+Phones use Apple's Product Bezels from `Bezel-iPhone-17.dmg`
+(developer.apple.com/design/resources). Their license forbids redistributing them, so they stay
+out of git; copy them into `assets/` first:
+
+```bash
+cp "/Volumes/Bezel-iPhone-17/PNG/iPhone 17/iPhone 17 - Black - Portrait.png" assets/bezel-iphone17-black.png
+cp "/Volumes/Bezel-iPhone-17/PNG/iPhone 17 Pro Max/iPhone 17 Pro Max - Deep Blue - Portrait.png" assets/bezel-iphone17promax-deepblue.png
+```
+
 ```bash
 cargo build --release
 ASSET=header ./target/release/video frame 0 -o out

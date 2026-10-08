@@ -3,3 +3,5 @@ strip.png
 onion.png
 frames/
 _frame_snapshots/
+# Apple Product Bezels (Apple Design Resources license: no redistribution)
+assets/bezel-*.png

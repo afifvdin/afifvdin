@@ -75,6 +75,17 @@ impl Video for AppPreview {
     }
 
     fn render_frame<'a>(&'a self, frame: Frame, ctx: &FFramesContext<'a, '_>) -> Svgr<'a> {
+        let screen = screen(&frame, ctx);
+        fframes::svgr!(
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox={format!("0 0 {W} {H}")} width={W} height={H}>
+                {screen}
+            </svg>
+        )
+    }
+}
+
+/// The phone screen at `W`x`H`.
+fn screen<'a>(frame: &Frame, ctx: &FFramesContext<'a, '_>) -> Svgr<'a> {
         let t = frame.seconds();
         let cx = W as f32 / 2.;
 
@@ -103,7 +114,7 @@ impl Video for AppPreview {
             .iter()
             .filter(|(start, end, ..)| t >= *start - 0.05 && t <= *end + 0.05)
             .map(|&(start, end, a, b)| {
-                let (rise, opacity) = fade(&frame, start, end);
+                let (rise, opacity) = fade(frame, start, end);
                 fframes::svgr!(
                     <g opacity={opacity} transform={Transform::translate(0, rise)}>
                         <text x={cx} y="360" font-family={SERIF} font-size="68" fill={CREAM} text-anchor="middle">{a}</text>
@@ -114,7 +125,7 @@ impl Video for AppPreview {
             .collect();
 
         let title = if t >= TITLE_AT - 0.05 {
-            let (rise, opacity) = fade(&frame, TITLE_AT, 999.);
+            let (rise, opacity) = fade(frame, TITLE_AT, 999.);
             fframes::svgr!(
                 <g opacity={opacity} transform={Transform::translate(0, rise)}>
                     <text x={cx} y="380" font-family={SERIF} font-size="84" fill={CREAM} text-anchor="middle">"Kibla"</text>
@@ -126,13 +137,65 @@ impl Video for AppPreview {
         };
 
         fframes::svgr!(
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox={format!("0 0 {W} {H}")} width={W} height={H}>
+            <g>
                 <rect width={W} height={H} fill="#000" />
                 {bubble}
                 {arrow}
                 <text x={cx} y={(600. + 14.) * PT} font-family={MONO} font-weight="700" font-size={40. * PT} fill={INK} text-anchor="middle">{degrees}</text>
                 {captions}
                 {title}
+            </g>
+        )
+}
+
+// Apple's iPhone 17 bezel: 1350x2760 with the 1206x2622 screen at (72, 69).
+const BEZEL_SCALE: f32 = W as f32 / 1206.;
+// Rounds the screen's corners so they stay under the bezel (its opening has a ~187 px radius).
+const SCREEN_RADIUS: f32 = 150.;
+pub const FRAMED_W: usize = 992;
+pub const FRAMED_H: usize = 2028;
+// The website card colour, so the video sits on its card seamlessly.
+const TINT: &str = "#dde4f0";
+
+/// The same preview inside a real iPhone frame, for the website.
+#[derive(Debug)]
+pub struct FramedPreview;
+
+impl Video for FramedPreview {
+    const FPS: usize = 30;
+    const WIDTH: usize = FRAMED_W;
+    const HEIGHT: usize = FRAMED_H;
+    const BACKGROUND_COLOR: Color = Color::BLACK;
+
+    fn duration(&self) -> Duration<'_> {
+        Duration::Seconds(LENGTH)
+    }
+
+    fn audio(&self) -> AudioMap<'_> {
+        AudioMap::none()
+    }
+
+    fn render_frame<'a>(&'a self, frame: Frame, ctx: &FFramesContext<'a, '_>) -> Svgr<'a> {
+        let s = BEZEL_SCALE;
+        let (x, y) = (72. * s, 69. * s);
+        let screen = screen(&frame, ctx);
+        let bezel = ctx
+            .get_image("bezel-iphone17-black.png")
+            .map(|b| fframes::svgr!(<image href={b.href()} x="0" y="0" width={1350. * s} height={2760. * s} />))
+            .unwrap_or_else(Svgr::empty);
+        fframes::svgr!(
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox={format!("0 0 {FRAMED_W} {FRAMED_H}")} width={FRAMED_W} height={FRAMED_H}>
+                <rect width={FRAMED_W} height={FRAMED_H} fill={TINT} />
+                <defs>
+                    <clipPath id="screen">
+                        <rect x={x} y={y} width={1206. * s} height={2622. * s} rx={SCREEN_RADIUS * s} />
+                    </clipPath>
+                </defs>
+                <g clip-path="url(#screen)">
+                    <rect x={x} y={y} width={1206. * s} height={2622. * s} fill="#000" />
+                    <g transform={Transform::translate(x, y)}>{screen}</g>
+                </g>
+                {bezel}
             </svg>
         )
     }
