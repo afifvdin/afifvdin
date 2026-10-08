@@ -1,6 +1,6 @@
 # Kibla preview video
 
-fframes project that renders a 16 s preview of Kibla: the app's screen (arrow + degrees off)
+fframes project that renders a 16 s preview of Kibla: the app's screen (arrow, compass ring, degrees off)
 recreated from a simulator capture, with the phone turning toward the Qibla and captions on top.
 The simulator has no compass, so this is a recreation, not a screen recording; App Store
 previews need real footage, so use this for the website, not App Store Connect.
@@ -30,5 +30,5 @@ ffmpeg -ss 10 -i ../preview-framed-992x2028.mp4 -frames:v 1 -vf scale=600:-2 -q:
 ```
 
 `arrow.png` and `bubble.png` are the app's SF Symbols (`arrow.up` bold 160 pt, `text.bubble`
-semibold 20 pt) at 4x in the app's ink colour, #0F0F0F. `Cargo.toml` pins fframes' helper
+semibold 20 pt) at 4x in the app's terracotta ink, #8A3B14. `Cargo.toml` pins fframes' helper
 crates to 1.1.0, same as the Discreet Tasbeeh project.

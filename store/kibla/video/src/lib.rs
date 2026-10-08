@@ -1,14 +1,15 @@
-//! Kibla preview: the app's screen (arrow + degrees off) recreated at iPhone 17 Pro Max
-//! proportions, with the phone turning toward the Qibla, and captions in the top of the screen.
+//! Kibla preview: the app's screen (arrow, compass ring, degrees off) recreated at iPhone 17
+//! Pro Max proportions, with the phone turning toward the Qibla, and captions in the top of the screen.
 use fframes::{AudioMap, Color, Duration, FFramesContext, Frame, Svgr, Transform, Video, animation::Easing};
 
 const SERIF: &str = "Instrument Serif";
 const MONO: &str = "SF Mono";
-// The website's dark palette: warm off-white text and a muted warm grey.
-const CREAM: &str = "#EFE9DD";
-const MUTED: &str = "#8C857A";
-// The app's Color(white: 0.06), sampled from a simulator capture.
-const INK: &str = "#0F0F0F";
+// The app's colours: terracotta ink on a pastel peach page, letters at 45%.
+const PAPER: &str = "#F8E1CF";
+const INK: &str = "#8A3B14";
+const SECONDARY: f32 = 0.45;
+// Jakarta, so the heading behind each offset is a real one.
+const QIBLA: f32 = 295.;
 
 pub const W: usize = 886;
 pub const H: usize = 1920;
@@ -92,7 +93,20 @@ fn screen<'a>(frame: &Frame, ctx: &FFramesContext<'a, '_>) -> Svgr<'a> {
         // Positions in points, measured from a simulator capture.
         let off = offset(t);
         let (aw, ah) = (166. * PT, 178. * PT);
-        let (ax, ay) = (cx, 446. * PT);
+        let (ax, ay) = (cx, 444. * PT);
+        // The ring shows true directions, so it turns against the phone's heading.
+        let dial = off - QIBLA;
+        let letters: Vec<Svgr> = ["N", "E", "S", "W"]
+            .iter()
+            .enumerate()
+            .map(|(i, letter)| {
+                let a = (dial + i as f32 * 90.).to_radians();
+                let (x, y) = (ax + 150. * PT * a.sin(), ay - 150. * PT * a.cos());
+                fframes::svgr!(
+                    <text x={x} y={y + 7.7 * PT} font-family={MONO} font-weight="700" font-size={22. * PT} fill={INK} opacity={SECONDARY} text-anchor="middle">{*letter}</text>
+                )
+            })
+            .collect();
         let arrow = ctx
             .get_image("arrow.png")
             .map(|img| {
@@ -106,7 +120,7 @@ fn screen<'a>(frame: &Frame, ctx: &FFramesContext<'a, '_>) -> Svgr<'a> {
         let (bw, bh) = (27. * PT, 25. * PT);
         let bubble = ctx
             .get_image("bubble.png")
-            .map(|img| fframes::svgr!(<image href={img.href()} x={409. * PT - bw / 2.} y={91. * PT - bh / 2.} width={bw} height={bh} />))
+            .map(|img| fframes::svgr!(<image href={img.href()} x={409. * PT - bw / 2.} y={90. * PT - bh / 2.} width={bw} height={bh} opacity={SECONDARY} />))
             .unwrap_or_else(Svgr::empty);
         let degrees = format!("{}°", off.abs().round() as i32);
 
@@ -117,8 +131,8 @@ fn screen<'a>(frame: &Frame, ctx: &FFramesContext<'a, '_>) -> Svgr<'a> {
                 let (rise, opacity) = fade(frame, start, end);
                 fframes::svgr!(
                     <g opacity={opacity} transform={Transform::translate(0, rise)}>
-                        <text x={cx} y="360" font-family={SERIF} font-size="68" fill={CREAM} text-anchor="middle">{a}</text>
-                        <text x={cx} y={360. + 68. * 1.12} font-family={SERIF} font-size="68" fill={CREAM} text-anchor="middle">{b}</text>
+                        <text x={cx} y="360" font-family={SERIF} font-size="68" fill={INK} text-anchor="middle">{a}</text>
+                        <text x={cx} y={360. + 68. * 1.12} font-family={SERIF} font-size="68" fill={INK} text-anchor="middle">{b}</text>
                     </g>
                 )
             })
@@ -128,8 +142,8 @@ fn screen<'a>(frame: &Frame, ctx: &FFramesContext<'a, '_>) -> Svgr<'a> {
             let (rise, opacity) = fade(frame, TITLE_AT, 999.);
             fframes::svgr!(
                 <g opacity={opacity} transform={Transform::translate(0, rise)}>
-                    <text x={cx} y="380" font-family={SERIF} font-size="84" fill={CREAM} text-anchor="middle">"Kibla"</text>
-                    <text x={cx} y="450" font-family={SERIF} font-size="44" fill={MUTED} text-anchor="middle">"Face the Qibla, quietly."</text>
+                    <text x={cx} y="380" font-family={SERIF} font-size="84" fill={INK} text-anchor="middle">"Kibla"</text>
+                    <text x={cx} y="450" font-family={SERIF} font-size="44" fill={INK} opacity={SECONDARY} text-anchor="middle">"Find the Qibla, anywhere."</text>
                 </g>
             )
         } else {
@@ -138,10 +152,11 @@ fn screen<'a>(frame: &Frame, ctx: &FFramesContext<'a, '_>) -> Svgr<'a> {
 
         fframes::svgr!(
             <g>
-                <rect width={W} height={H} fill="#000" />
+                <rect width={W} height={H} fill={PAPER} />
                 {bubble}
+                {letters}
                 {arrow}
-                <text x={cx} y={(600. + 14.) * PT} font-family={MONO} font-weight="700" font-size={40. * PT} fill={INK} text-anchor="middle">{degrees}</text>
+                <text x={cx} y={695.3 * PT} font-family={MONO} font-weight="700" font-size={40. * PT} fill={INK} text-anchor="middle">{degrees}</text>
                 {captions}
                 {title}
             </g>
@@ -155,7 +170,7 @@ const SCREEN_RADIUS: f32 = 150.;
 pub const FRAMED_W: usize = 992;
 pub const FRAMED_H: usize = 2028;
 // The website card colour, so the video sits on its card seamlessly.
-const TINT: &str = "#dde4f0";
+const TINT: &str = "#f8e1cf";
 
 /// The same preview inside a real iPhone frame, for the website.
 #[derive(Debug)]
@@ -192,7 +207,7 @@ impl Video for FramedPreview {
                     </clipPath>
                 </defs>
                 <g clip-path="url(#screen)">
-                    <rect x={x} y={y} width={1206. * s} height={2622. * s} fill="#000" />
+                    <rect x={x} y={y} width={1206. * s} height={2622. * s} fill={PAPER} />
                     <g transform={Transform::translate(x, y)}>{screen}</g>
                 </g>
                 {bezel}
