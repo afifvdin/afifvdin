@@ -35,6 +35,7 @@ const statusTone: Record<AppStatus, string> = {
   soon: "bg-amber-500",
   building: "bg-sky-500",
   "open-source": "bg-stone-400",
+  personal: "bg-violet-400",
 };
 
 export function StatusPill({

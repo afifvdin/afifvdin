@@ -1,4 +1,9 @@
-export type AppStatus = "live" | "soon" | "building" | "open-source";
+export type AppStatus =
+  | "live"
+  | "soon"
+  | "building"
+  | "open-source"
+  | "personal";
 
 export type AppLink = { label: string; href: string };
 
@@ -35,6 +40,7 @@ export const statusLabel: Record<AppStatus, string> = {
   soon: "Coming soon",
   building: "Building",
   "open-source": "Open source",
+  personal: "Personal tool",
 };
 
 export const apps: App[] = [
@@ -182,7 +188,7 @@ export const apps: App[] = [
     name: "DB Studio",
     tagline: "How heavy is that query?",
     platform: "macOS",
-    status: "building",
+    status: "personal",
     year: 2026,
     icon: "/apps/db-studio/icon.png",
     tint: "#dfe8f1",
