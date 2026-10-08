@@ -170,9 +170,9 @@ export const apps: App[] = [
     links: [],
     media: {
       type: "video",
-      src: "/kave.mp4",
+      src: "/apps/kave/preview.mp4",
       poster: "/apps/kave/poster.jpg",
-      alt: "Kave showing keystrokes on screen",
+      alt: "Kave's keycaps showing shortcuts like command shift K and option up times two while they edit code in an editor",
     },
   },
 ];

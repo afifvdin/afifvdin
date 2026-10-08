@@ -1,0 +1,4 @@
+target/
+# Apple fonts, copied from the system (see README)
+assets/SF-*.otf
+assets/SF-*.ttf
