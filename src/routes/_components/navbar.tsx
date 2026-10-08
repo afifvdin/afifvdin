@@ -1,10 +1,15 @@
 import { Link } from "@tanstack/react-router";
+import { AlphaMark } from "@/components/logo";
 
 export function Navbar() {
   return (
     <header>
       <nav className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-6 sm:px-6">
-        <Link to="/" className="font-serif text-2xl leading-none">
+        <Link
+          to="/"
+          className="flex items-center gap-2.5 font-serif text-2xl leading-none"
+        >
+          <AlphaMark className="text-brand h-5 w-auto" />
           Afifudin
         </Link>
         <div className="flex items-center gap-4 text-sm">

@@ -34,12 +34,25 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         name: "description",
         content: "Small, focused apps for iPhone and the web by Afifudin.",
       },
+      { name: "theme-color", content: "#f6f1e6" },
+      { property: "og:title", content: "Afifudin — Apps" },
+      {
+        property: "og:description",
+        content: "Small apps, made with care.",
+      },
+      { property: "og:image", content: "https://afifvdin.com/og.jpg" },
+      { property: "og:url", content: "https://afifvdin.com" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "icon", href: "/favicon.ico", sizes: "32x32" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+      { rel: "manifest", href: "/manifest.json" },
     ],
   }),
 
