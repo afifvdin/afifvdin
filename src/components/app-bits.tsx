@@ -83,7 +83,10 @@ export function AppMedia({
         poster={media.poster}
         aria-label={media.alt}
         className={cn(
-          "w-full rounded-xl bg-black/10 shadow-[0_12px_30px_-12px_rgb(60_40_20/0.35)]",
+          "bg-black/10 shadow-[0_12px_30px_-12px_rgb(60_40_20/0.35)]",
+          media.phone
+            ? "mx-auto w-48 rounded-[1.75rem] border-[5px] border-neutral-900"
+            : "w-full rounded-xl",
           className,
         )}
       />
