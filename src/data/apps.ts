@@ -96,9 +96,10 @@ export const apps: App[] = [
     ],
     links: [],
     media: {
-      type: "image",
-      src: "/apps/discreet-tasbeeh/screenshot.png",
-      alt: "Discreet Tasbeeh showing a count of 33 on a black screen",
+      type: "video",
+      src: "/apps/discreet-tasbeeh/preview.mp4",
+      poster: "/apps/discreet-tasbeeh/poster.jpg",
+      alt: "Discreet Tasbeeh counting up from 0 to 12 on a pitch black screen with the number barely visible, then resetting to 0",
       phone: true,
     },
     privacy: [

@@ -197,48 +197,109 @@ impl Video for AppPreview {
     }
 
     fn render_frame<'a>(&'a self, frame: Frame, ctx: &FFramesContext<'a, '_>) -> Svgr<'a> {
-        let (fw, fh) = (884_u32, 1920_u32);
-        let footage = frame
-            .get_synced_video_frame(ctx, FOOTAGE, &SyncVideoFrameInput { start_from: 0.0, looping: false, editor_fallback_image: None })
-            .and_then(|f| f.into_resized_image(&FrameConvertOptions { resize: ResizeVideoFrame { width: fw, height: fh } }))
-            .map(|img| fframes::svgr!(<image href={img.href()} x={(PREVIEW_W as u32 - fw) / 2} y="0" width={fw} height={fh} />))
-            .unwrap_or_else(Svgr::empty);
-
-        let t = frame.seconds();
-        let cx = PREVIEW_W as f32 / 2.;
-        let fs = 68.;
-        let captions: Vec<Svgr> = CAPTIONS
-            .iter()
-            .filter(|(start, end, ..)| t >= *start - 0.05 && t <= *end + 0.05)
-            .map(|&(start, end, a, b)| {
-                let (rise, opacity) = fade(&frame, start, end);
-                fframes::svgr!(
-                    <g opacity={opacity} transform={Transform::translate(0, rise)}>
-                        <text x={cx} y="360" font-family={SERIF} font-size={fs} fill={CREAM} text-anchor="middle">{a}</text>
-                        <text x={cx} y={360. + fs * 1.12} font-family={SERIF} font-size={fs} fill={CREAM} text-anchor="middle">{b}</text>
-                    </g>
-                )
-            })
-            .collect();
-
-        let title = if t >= TITLE_AT - 0.05 {
-            let (rise, opacity) = fade(&frame, TITLE_AT, 999.);
-            fframes::svgr!(
-                <g opacity={opacity} transform={Transform::translate(0, rise)}>
-                    <text x={cx} y="380" font-family={SERIF} font-size="84" fill={CREAM} text-anchor="middle">"Discreet Tasbeeh"</text>
-                    <text x={cx} y="450" font-family={SERIF} font-size="44" fill={MUTED} text-anchor="middle">"Count quietly."</text>
-                </g>
-            )
-        } else {
-            Svgr::empty()
-        };
-
         fframes::svgr!(
             <svg xmlns="http://www.w3.org/2000/svg" viewBox={format!("0 0 {PREVIEW_W} {PREVIEW_H}")} width={PREVIEW_W} height={PREVIEW_H}>
-                <rect width={PREVIEW_W} height={PREVIEW_H} fill="#000" />
-                {footage}
-                {captions}
-                {title}
+                {screen(&frame, ctx)}
+            </svg>
+        )
+    }
+}
+
+/// The phone screen: real footage plus captions, at PREVIEW_W x PREVIEW_H.
+fn screen<'a>(frame: &Frame, ctx: &FFramesContext<'a, '_>) -> Svgr<'a> {
+    let (fw, fh) = (884_u32, 1920_u32);
+    let footage = frame
+        .get_synced_video_frame(ctx, FOOTAGE, &SyncVideoFrameInput { start_from: 0.0, looping: false, editor_fallback_image: None })
+        .and_then(|f| f.into_resized_image(&FrameConvertOptions { resize: ResizeVideoFrame { width: fw, height: fh } }))
+        .map(|img| fframes::svgr!(<image href={img.href()} x={(PREVIEW_W as u32 - fw) / 2} y="0" width={fw} height={fh} />))
+        .unwrap_or_else(Svgr::empty);
+
+    let t = frame.seconds();
+    let cx = PREVIEW_W as f32 / 2.;
+    let fs = 68.;
+    let captions: Vec<Svgr> = CAPTIONS
+        .iter()
+        .filter(|(start, end, ..)| t >= *start - 0.05 && t <= *end + 0.05)
+        .map(|&(start, end, a, b)| {
+            let (rise, opacity) = fade(frame, start, end);
+            fframes::svgr!(
+                <g opacity={opacity} transform={Transform::translate(0, rise)}>
+                    <text x={cx} y="360" font-family={SERIF} font-size={fs} fill={CREAM} text-anchor="middle">{a}</text>
+                    <text x={cx} y={360. + fs * 1.12} font-family={SERIF} font-size={fs} fill={CREAM} text-anchor="middle">{b}</text>
+                </g>
+            )
+        })
+        .collect();
+
+    let title = if t >= TITLE_AT - 0.05 {
+        let (rise, opacity) = fade(frame, TITLE_AT, 999.);
+        fframes::svgr!(
+            <g opacity={opacity} transform={Transform::translate(0, rise)}>
+                <text x={cx} y="380" font-family={SERIF} font-size="84" fill={CREAM} text-anchor="middle">"Discreet Tasbeeh"</text>
+                <text x={cx} y="450" font-family={SERIF} font-size="44" fill={MUTED} text-anchor="middle">"Count quietly."</text>
+            </g>
+        )
+    } else {
+        Svgr::empty()
+    };
+
+    fframes::svgr!(
+        <g>
+            <rect width={PREVIEW_W} height={PREVIEW_H} fill="#000" />
+            {footage}
+            {captions}
+            {title}
+        </g>
+    )
+}
+
+// Apple's iPhone 17 bezel: 1350x2760 with the 1206x2622 screen at (72, 69).
+const BEZEL_SCALE: f32 = PREVIEW_W as f32 / 1206.;
+// Rounds the screen's corners so they stay under the bezel (its opening has a ~187 px radius).
+const SCREEN_RADIUS: f32 = 150.;
+pub const FRAMED_W: usize = 992;
+pub const FRAMED_H: usize = 2028;
+// The website card colour; keep in sync with `tint` in src/data/apps.ts.
+const TINT: &str = "#dcebdc";
+
+/// The same preview inside a real iPhone frame on the card colour, for the website.
+#[derive(Debug)]
+pub struct FramedPreview;
+
+impl Video for FramedPreview {
+    const FPS: usize = 30;
+    const WIDTH: usize = FRAMED_W;
+    const HEIGHT: usize = FRAMED_H;
+    const BACKGROUND_COLOR: Color = Color::BLACK;
+
+    fn duration(&self) -> Duration<'_> {
+        Duration::Frames(FOOTAGE_FRAMES)
+    }
+
+    fn audio(&self) -> AudioMap<'_> {
+        AudioMap::none()
+    }
+
+    fn render_frame<'a>(&'a self, frame: Frame, ctx: &FFramesContext<'a, '_>) -> Svgr<'a> {
+        let s = BEZEL_SCALE;
+        let (x, y) = (72. * s, 69. * s);
+        let bezel = ctx
+            .get_image("bezel-iphone17-black.png")
+            .map(|b| fframes::svgr!(<image href={b.href()} x="0" y="0" width={1350. * s} height={2760. * s} />))
+            .unwrap_or_else(Svgr::empty);
+        fframes::svgr!(
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox={format!("0 0 {FRAMED_W} {FRAMED_H}")} width={FRAMED_W} height={FRAMED_H}>
+                <rect width={FRAMED_W} height={FRAMED_H} fill={TINT} />
+                <defs>
+                    <clipPath id="screen">
+                        <rect x={x} y={y} width={1206. * s} height={2622. * s} rx={SCREEN_RADIUS * s} />
+                    </clipPath>
+                </defs>
+                <g clip-path="url(#screen)">
+                    <rect x={x} y={y} width={1206. * s} height={2622. * s} fill="#000" />
+                    <g transform={Transform::translate(x, y)}>{screen(&frame, ctx)}</g>
+                </g>
+                {bezel}
             </svg>
         )
     }

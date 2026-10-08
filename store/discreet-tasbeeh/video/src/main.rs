@@ -1,9 +1,10 @@
 //! `ASSET=<name> cargo run --release -- <fframes command>` picks what to render:
-//! header, search, shot-6.3-N, shot-6.9-N, shot-duo-N (N = 1..3) or preview.
+//! header, search, shot-6.3-N, shot-6.9-N, shot-duo-N (N = 1..3), preview, or framed
+//! (the preview inside the iPhone frame on the website card colour).
 use fframes::{EncoderOptions, MediaDirectory, RenderOptions, Video, cli};
 use fframes_skia_renderer::{SkiaFFramesRenderer, SkiaPipelineConcurrencyPolicy, SkiaPipelineConfig, metal::SkiaMetalCtx};
 use std::process::ExitCode;
-use video::{AppPreview, SHOTS, Still, StillImage};
+use video::{AppPreview, FramedPreview, SHOTS, Still, StillImage};
 
 fn run<'m, V: Video + Send + Sync>(video: &V, media: &'m dyn fframes::MediaProvider<'m>) -> ExitCode {
     let gpu = SkiaMetalCtx::new(V::WIDTH, V::HEIGHT).expect("GPU context");
@@ -50,6 +51,7 @@ fn main() -> ExitCode {
         ["header"] => run(&StillImage::<3840, 1646>(Still::Header), &media),
         ["search"] => run(&StillImage::<3840, 2560>(Still::SearchResults), &media),
         ["preview"] => run(&AppPreview, &media),
+        ["framed"] => run(&FramedPreview, &media),
         ["shot", size, n] => {
             let Some(still) = n.parse().ok().and_then(|n| shot(size, n)) else {
                 eprintln!("unknown shot {asset}");

@@ -4,7 +4,8 @@ fframes project that renders the App Store header, search results asset, caption
 screenshots and app preview from the real captures in `assets/`.
 
 `ASSET` picks the output: `header`, `search`, `shot-6.3-N`, `shot-6.9-N`, `shot-duo-N`
-(N = 1..3) or `preview`.
+(N = 1..3), `preview`, or `framed` (the preview inside the real iPhone frame on the website
+card colour, `TINT` in `src/lib.rs`; keep it in sync with `tint` in `src/data/apps.ts`).
 
 Phones use Apple's Product Bezels from `Bezel-iPhone-17.dmg`
 (developer.apple.com/design/resources). Their license forbids redistributing them, so they stay
@@ -27,6 +28,14 @@ The preview then gets a silent stereo AAC track (App Store Connect expects audio
 ffmpeg -i preview.mp4 -f lavfi -i anullsrc=channel_layout=stereo:sample_rate=48000 -shortest \
   -map 0:v -map 1:a -c:v libx264 -profile:v high -level 4.0 -pix_fmt yuv420p -r 30 -b:v 8M \
   -c:a aac -b:a 256k -movflags +faststart ../upload/04-iphone-6.3-app-preview-886x1920.mp4
+```
+
+Website copies (`public/apps/discreet-tasbeeh/`):
+
+```bash
+ASSET=framed ./target/release/video render -o ../preview-framed-992x2028.mp4
+ffmpeg -i ../preview-framed-992x2028.mp4 -vf scale=600:-2 -c:v libx264 -crf 24 -preset slow -pix_fmt yuv420p -an -movflags +faststart ../../../public/apps/discreet-tasbeeh/preview.mp4
+ffmpeg -ss 10.5 -i ../preview-framed-992x2028.mp4 -frames:v 1 -vf scale=600:-2 -q:v 3 ../../../public/apps/discreet-tasbeeh/poster.jpg
 ```
 
 `Cargo.toml` pins fframes' helper crates to 1.1.0: their 1.2 releases pull a `usvgr` that
