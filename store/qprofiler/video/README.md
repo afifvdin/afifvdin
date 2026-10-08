@@ -1,6 +1,6 @@
-# DB Studio preview video
+# QProfiler preview video
 
-fframes project that renders a 25.5 s preview of DB Studio from real window captures of the app
+fframes project that renders a 25.5 s preview of QProfiler from real window captures of the app
 (`../screenshots/`, linked into `assets/`). Each screenshot sits in a Mac window on the website card
 colour while the camera eases into the detail the caption is about: the misestimate badges in
 the Postgres plan, a sort spilling to disk, two runs compared, the workload, and TigerGraph's
@@ -15,11 +15,11 @@ cargo build --release
 ```
 
 `TINT` in `src/lib.rs` is the card colour; keep it in sync with `tint` in `src/data/apps.ts`.
-Website copies (`public/apps/db-studio/`):
+Website copies (`public/apps/qprofiler/`):
 
 ```bash
-ffmpeg -i ../preview-1800x1200.mp4 -vf scale=1200:-2 -c:v libx264 -crf 30 -preset veryslow -pix_fmt yuv420p -an -movflags +faststart ../../../public/apps/db-studio/preview.mp4
-ffmpeg -ss 4.4 -i ../preview-1800x1200.mp4 -frames:v 1 -vf scale=1200:-2 -q:v 3 ../../../public/apps/db-studio/poster.jpg
+ffmpeg -i ../preview-1800x1200.mp4 -vf scale=1200:-2 -c:v libx264 -crf 30 -preset veryslow -pix_fmt yuv420p -an -movflags +faststart ../../../public/apps/qprofiler/preview.mp4
+ffmpeg -ss 4.4 -i ../preview-1800x1200.mp4 -frames:v 1 -vf scale=1200:-2 -q:v 3 ../../../public/apps/qprofiler/poster.jpg
 ```
 
 Screen text is dense, so the web copy uses CRF 30 to stay near the other previews' size.

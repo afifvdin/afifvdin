@@ -1,4 +1,4 @@
-//! DB Studio preview: real screenshots of the app in a Mac window on the card colour, with the
+//! QProfiler preview: real screenshots of the app in a Mac window on the card colour, with the
 //! camera easing into the details that matter and captions above the window.
 use fframes::{AudioMap, Color, Duration, FFramesContext, Frame, Svgr, Transform, Video, animation::Easing};
 
@@ -214,7 +214,7 @@ fn scene<'a>(frame: &Frame, t: f32, ctx: &FFramesContext<'a, '_>) -> Svgr<'a> {
             <g>
                 <g opacity={opacity} transform={Transform::translate(0, rise)}>
                     {icon(cx, 440., 220.)}
-                    <text x={cx} y="700" font-family={SERIF} font-size="128" fill={INK} text-anchor="middle">"DB Studio"</text>
+                    <text x={cx} y="700" font-family={SERIF} font-size="128" fill={INK} text-anchor="middle">"QProfiler"</text>
                 </g>
                 <g opacity={opacity2} transform={Transform::translate(0, rise2)}>
                     <text x={cx} y="790" font-family={SERIF} font-size="56" fill={INK} opacity="0.55" text-anchor="middle">"How heavy is that query?"</text>

@@ -184,13 +184,13 @@ export const apps: App[] = [
     },
   },
   {
-    slug: "db-studio",
-    name: "DB Studio",
+    slug: "qprofiler",
+    name: "QProfiler",
     tagline: "How heavy is that query?",
     platform: "macOS",
     status: "personal",
     year: 2026,
-    icon: "/apps/db-studio/icon.png",
+    icon: "/apps/qprofiler/icon.png",
     tint: "#dfe8f1",
     description: [
       "A Mac app for seeing how heavy a query is, on Postgres and TigerGraph.",
@@ -208,9 +208,9 @@ export const apps: App[] = [
     links: [],
     media: {
       type: "video",
-      src: "/apps/db-studio/preview.mp4",
-      poster: "/apps/db-studio/poster.jpg",
-      alt: "DB Studio showing a Postgres query plan with misestimate badges, a sort spilling to disk, two runs compared, the workload view, and a TigerGraph profile where the profiler reports 1 MB but the process grew 34 MB",
+      src: "/apps/qprofiler/preview.mp4",
+      poster: "/apps/qprofiler/poster.jpg",
+      alt: "QProfiler showing a Postgres query plan with misestimate badges, a sort spilling to disk, two runs compared, the workload view, and a TigerGraph profile where the profiler reports 1 MB but the process grew 34 MB",
     },
   },
 ];
