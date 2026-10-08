@@ -75,13 +75,13 @@ export const apps: App[] = [
     },
   },
   {
-    slug: "simple-tasbeeh",
-    name: "Simple Tasbeeh",
-    tagline: "A discreet dhikr counter",
+    slug: "discreet-tasbeeh",
+    name: "Discreet Tasbeeh",
+    tagline: "A quiet, private dhikr counter",
     platform: "iPhone",
     status: "soon",
     year: 2026,
-    icon: "/apps/simple-tasbeeh/icon.png",
+    icon: "/apps/discreet-tasbeeh/icon.png",
     tint: "#dcebdc",
     description: [
       "A quiet tasbeeh counter that stays out of the way.",
@@ -97,12 +97,12 @@ export const apps: App[] = [
     links: [],
     media: {
       type: "image",
-      src: "/apps/simple-tasbeeh/screenshot.jpg",
-      alt: "Simple Tasbeeh showing a count of 33 on a black screen",
+      src: "/apps/discreet-tasbeeh/screenshot.jpg",
+      alt: "Discreet Tasbeeh showing a count of 33 on a black screen",
       phone: true,
     },
     privacy: [
-      "Simple Tasbeeh does not collect, store, or share any personal data.",
+      "Discreet Tasbeeh does not collect, store, or share any personal data.",
       "The tap count is stored only on your device and is never sent anywhere.",
       "The app has no analytics, no ads, and no network access.",
     ],
