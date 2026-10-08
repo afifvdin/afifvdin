@@ -10,7 +10,7 @@
     "format": "biome format",
     "lint": "biome lint",
     "check": "biome check",
-    "deploy": "wrangler deploy"
+    "deploy": "vite build && wrangler deploy"
   },
   "dependencies": {
     "@cloudflare/vite-plugin": "^1.13.8",
