@@ -13,6 +13,9 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProjectsIndexRouteImport } from './routes/projects/index'
 import { Route as CraftsIndexRouteImport } from './routes/crafts/index'
 import { Route as DemoTaggerIndexRouteImport } from './routes/demo/tagger/index'
+import { Route as AppsSlugIndexRouteImport } from './routes/apps/$slug/index'
+import { Route as AppsSlugSupportRouteImport } from './routes/apps/$slug/support'
+import { Route as AppsSlugPrivacyRouteImport } from './routes/apps/$slug/privacy'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,17 +37,38 @@ const DemoTaggerIndexRoute = DemoTaggerIndexRouteImport.update({
   path: '/demo/tagger/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppsSlugIndexRoute = AppsSlugIndexRouteImport.update({
+  id: '/apps/$slug/',
+  path: '/apps/$slug/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppsSlugSupportRoute = AppsSlugSupportRouteImport.update({
+  id: '/apps/$slug/support',
+  path: '/apps/$slug/support',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppsSlugPrivacyRoute = AppsSlugPrivacyRouteImport.update({
+  id: '/apps/$slug/privacy',
+  path: '/apps/$slug/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/crafts': typeof CraftsIndexRoute
   '/projects': typeof ProjectsIndexRoute
+  '/apps/$slug/privacy': typeof AppsSlugPrivacyRoute
+  '/apps/$slug/support': typeof AppsSlugSupportRoute
+  '/apps/$slug': typeof AppsSlugIndexRoute
   '/demo/tagger': typeof DemoTaggerIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/crafts': typeof CraftsIndexRoute
   '/projects': typeof ProjectsIndexRoute
+  '/apps/$slug/privacy': typeof AppsSlugPrivacyRoute
+  '/apps/$slug/support': typeof AppsSlugSupportRoute
+  '/apps/$slug': typeof AppsSlugIndexRoute
   '/demo/tagger': typeof DemoTaggerIndexRoute
 }
 export interface FileRoutesById {
@@ -52,20 +76,48 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/crafts/': typeof CraftsIndexRoute
   '/projects/': typeof ProjectsIndexRoute
+  '/apps/$slug/privacy': typeof AppsSlugPrivacyRoute
+  '/apps/$slug/support': typeof AppsSlugSupportRoute
+  '/apps/$slug/': typeof AppsSlugIndexRoute
   '/demo/tagger/': typeof DemoTaggerIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/crafts' | '/projects' | '/demo/tagger'
+  fullPaths:
+    | '/'
+    | '/crafts'
+    | '/projects'
+    | '/apps/$slug/privacy'
+    | '/apps/$slug/support'
+    | '/apps/$slug'
+    | '/demo/tagger'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/crafts' | '/projects' | '/demo/tagger'
-  id: '__root__' | '/' | '/crafts/' | '/projects/' | '/demo/tagger/'
+  to:
+    | '/'
+    | '/crafts'
+    | '/projects'
+    | '/apps/$slug/privacy'
+    | '/apps/$slug/support'
+    | '/apps/$slug'
+    | '/demo/tagger'
+  id:
+    | '__root__'
+    | '/'
+    | '/crafts/'
+    | '/projects/'
+    | '/apps/$slug/privacy'
+    | '/apps/$slug/support'
+    | '/apps/$slug/'
+    | '/demo/tagger/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CraftsIndexRoute: typeof CraftsIndexRoute
   ProjectsIndexRoute: typeof ProjectsIndexRoute
+  AppsSlugPrivacyRoute: typeof AppsSlugPrivacyRoute
+  AppsSlugSupportRoute: typeof AppsSlugSupportRoute
+  AppsSlugIndexRoute: typeof AppsSlugIndexRoute
   DemoTaggerIndexRoute: typeof DemoTaggerIndexRoute
 }
 
@@ -99,6 +151,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DemoTaggerIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/apps/$slug/': {
+      id: '/apps/$slug/'
+      path: '/apps/$slug'
+      fullPath: '/apps/$slug'
+      preLoaderRoute: typeof AppsSlugIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/apps/$slug/support': {
+      id: '/apps/$slug/support'
+      path: '/apps/$slug/support'
+      fullPath: '/apps/$slug/support'
+      preLoaderRoute: typeof AppsSlugSupportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/apps/$slug/privacy': {
+      id: '/apps/$slug/privacy'
+      path: '/apps/$slug/privacy'
+      fullPath: '/apps/$slug/privacy'
+      preLoaderRoute: typeof AppsSlugPrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -106,6 +179,9 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CraftsIndexRoute: CraftsIndexRoute,
   ProjectsIndexRoute: ProjectsIndexRoute,
+  AppsSlugPrivacyRoute: AppsSlugPrivacyRoute,
+  AppsSlugSupportRoute: AppsSlugSupportRoute,
+  AppsSlugIndexRoute: AppsSlugIndexRoute,
   DemoTaggerIndexRoute: DemoTaggerIndexRoute,
 }
 export const routeTree = rootRouteImport
