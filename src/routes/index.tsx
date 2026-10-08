@@ -13,18 +13,18 @@ function Home() {
     <div className="mx-auto max-w-5xl px-4 sm:px-6">
       <section className="py-16 sm:py-24">
         <h1 className="max-w-3xl font-serif text-5xl leading-[1.02] text-balance sm:text-7xl">
-          Small apps, <em className="text-brand">made with care.</em>
+          Hi, I'm <em className="text-brand">Afifudin.</em>
         </h1>
         <p className="text-muted-foreground mt-6 max-w-md text-lg text-pretty">
-          I build quiet, focused apps for iPhone and the web. Each one does a
-          single thing well, with no ads and no tracking.
+          I'm a software engineer, and I love building things. Lately that means
+          apps for iPhone and the web. Here's what I've made so far.
         </p>
         <div className="mt-8 flex flex-wrap gap-2">
           <a
             href="#apps"
             className="bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium transition-opacity hover:opacity-85"
           >
-            See the apps
+            See my apps
           </a>
           <a
             href="mailto:hi@afifvdin.com"

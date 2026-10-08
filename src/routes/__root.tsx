@@ -28,17 +28,18 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         content: "width=device-width, initial-scale=1",
       },
       {
-        title: "Afifudin — Apps",
+        title: "Afifudin",
       },
       {
         name: "description",
-        content: "Small, focused apps for iPhone and the web by Afifudin.",
+        content:
+          "Afifudin is a software engineer who builds apps for iPhone and the web.",
       },
       { name: "theme-color", content: "#f6f1e6" },
-      { property: "og:title", content: "Afifudin — Apps" },
+      { property: "og:title", content: "Afifudin" },
       {
         property: "og:description",
-        content: "Small apps, made with care.",
+        content: "Software engineer building apps for iPhone and the web.",
       },
       { property: "og:image", content: "https://afifvdin.com/og.jpg" },
       { property: "og:url", content: "https://afifvdin.com" },
