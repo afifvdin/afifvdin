@@ -1,7 +1,7 @@
 use fframes::{EncoderOptions, MediaDirectory, RenderOptions, Video, cli};
 use fframes_skia_renderer::{SkiaFFramesRenderer, SkiaPipelineConcurrencyPolicy, SkiaPipelineConfig, metal::SkiaMetalCtx};
 use std::process::ExitCode;
-use video::{AppPreview, FramedPreview};
+use video::{AppPreview, FramedPreview, SHOTS, Still, StillImage};
 
 fn run<'m, V: Video + Send + Sync>(video: &V, media: &'m dyn fframes::MediaProvider<'m>) -> ExitCode {
     let gpu = SkiaMetalCtx::new(V::WIDTH, V::HEIGHT).expect("GPU context");
@@ -25,12 +25,40 @@ fn run<'m, V: Video + Send + Sync>(video: &V, media: &'m dyn fframes::MediaProvi
     .run()
 }
 
-/// `VARIANT=framed` renders the preview inside a real iPhone frame for the website.
+fn shot(size: &str, n: usize) -> Option<Still> {
+    let (name, lines) = SHOTS.get(n.checked_sub(1)?)?;
+    // The 6.9" set uses the Pro Max captures; 6.3" uses the iPhone 17 ones.
+    let device = if size == "6.9" { "17promax" } else { "17" };
+    let image: &'static str = Box::leak(format!("{device}-{name}.png").into_boxed_str());
+    Some(Still::Shot { lines: *lines, image })
+}
+
+/// `ASSET=<name>` picks the output: preview (default), framed (website video), header, search,
+/// shot-6.3-N or shot-6.9-N (N = 1..3). `VARIANT=framed` still works for the website video.
 fn main() -> ExitCode {
     let dir = MediaDirectory::read_folder("assets").expect("assets folder");
     let media = dir.process_media_source().expect("media");
-    match std::env::var("VARIANT").as_deref() {
-        Ok("framed") => run(&FramedPreview, &media),
-        _ => run(&AppPreview, &media),
+    let asset = std::env::var("ASSET").or_else(|_| std::env::var("VARIANT")).unwrap_or_else(|_| "preview".into());
+    let parts: Vec<&str> = asset.split('-').collect();
+    match parts.as_slice() {
+        ["preview"] => run(&AppPreview, &media),
+        ["framed"] => run(&FramedPreview, &media),
+        ["header"] => run(&StillImage::<3840, 1646>(Still::Header), &media),
+        ["search"] => run(&StillImage::<3840, 2560>(Still::SearchResults), &media),
+        ["shot", size, n] => {
+            let Some(still) = n.parse().ok().and_then(|n| shot(size, n)) else {
+                eprintln!("unknown shot {asset}");
+                return ExitCode::FAILURE;
+            };
+            match *size {
+                "6.3" => run(&StillImage::<1206, 2622>(still), &media),
+                "6.9" => run(&StillImage::<1320, 2868>(still), &media),
+                _ => ExitCode::FAILURE,
+            }
+        }
+        _ => {
+            eprintln!("unknown ASSET {asset}");
+            ExitCode::FAILURE
+        }
     }
 }

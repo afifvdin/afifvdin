@@ -1,5 +1,8 @@
 //! Kybla preview: the app's screen (arrow, compass ring, degrees off) recreated at iPhone 17
 //! Pro Max proportions, with the phone turning toward the Qibla, and captions in the top of the screen.
+mod stills;
+pub use stills::{SHOTS, Still, StillImage};
+
 use fframes::{AudioMap, Color, Duration, FFramesContext, Frame, Svgr, Transform, Video, animation::Easing};
 
 const SERIF: &str = "Instrument Serif";
