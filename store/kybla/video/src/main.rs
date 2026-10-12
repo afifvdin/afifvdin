@@ -27,14 +27,14 @@ fn run<'m, V: Video + Send + Sync>(video: &V, media: &'m dyn fframes::MediaProvi
 
 fn shot(size: &str, n: usize) -> Option<Still> {
     let (name, lines) = SHOTS.get(n.checked_sub(1)?)?;
-    // The 6.9" set uses the Pro Max captures; 6.3" uses the iPhone 17 ones.
+    // The 6.9" set uses the Pro Max captures; 6.3" and Duo use the iPhone 17 ones.
     let device = if size == "6.9" { "17promax" } else { "17" };
     let image: &'static str = Box::leak(format!("{device}-{name}.png").into_boxed_str());
     Some(Still::Shot { lines: *lines, image })
 }
 
 /// `ASSET=<name>` picks the output: preview (default), framed (website video), header, search,
-/// shot-6.3-N or shot-6.9-N (N = 1..3). `VARIANT=framed` still works for the website video.
+/// shot-6.3-N, shot-6.9-N or shot-duo-N (N = 1..3). `VARIANT=framed` still works for the website video.
 fn main() -> ExitCode {
     let dir = MediaDirectory::read_folder("assets").expect("assets folder");
     let media = dir.process_media_source().expect("media");
@@ -53,6 +53,7 @@ fn main() -> ExitCode {
             match *size {
                 "6.3" => run(&StillImage::<1206, 2622>(still), &media),
                 "6.9" => run(&StillImage::<1320, 2868>(still), &media),
+                "duo" => run(&StillImage::<1398, 2034>(still), &media),
                 _ => ExitCode::FAILURE,
             }
         }

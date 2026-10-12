@@ -36,10 +36,10 @@ crates to 1.1.0, same as the Discreet Tasbeeh project.
 ## App Store stills
 
 `ASSET` picks the output: `preview` (default), `framed`, `header`, `search`, `shot-6.3-N`,
-`shot-6.9-N` (N = 1..3). Stills are 1-frame renders; export them flattened to `../upload/`:
+`shot-6.9-N`, `shot-duo-N` (N = 1..3; Duo is 1398×2034 composed from the iPhone 17 captures). Stills are 1-frame renders; export them flattened to `../upload/`:
 
 ```bash
-for a in header search shot-6.3-1 shot-6.3-2 shot-6.3-3 shot-6.9-1 shot-6.9-2 shot-6.9-3; do
+for a in header search shot-{6.3,6.9,duo}-{1,2,3}; do
   ASSET=$a ./target/release/video frame 0 -o out/$a
 done
 ffmpeg -i out/header/0.png -pix_fmt rgb24 ../upload/01-header-3840x1646.png   # and so on, see ../listing.md

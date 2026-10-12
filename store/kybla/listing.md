@@ -58,7 +58,7 @@ Open decisions for the owner:
 - **Linked to user (recommended: No, but check).** Feedback isn't tied to an account or device ID. An email the user chooses to add does identify them, though. If you want the most conservative label, mark Email Address (and Customer Support) as linked. Keep the answers the same as Discreet Tasbeeh's for its feedback sheet.
 
 ## Store assets (upload/)
-Rendered by the fframes project in `video/` (`ASSET=header|search|shot-6.3-N|shot-6.9-N`; see its README) from real simulator captures in `video/assets/`.
+Rendered by the fframes project in `video/` (`ASSET=header|search|shot-6.3-N|shot-6.9-N|shot-duo-N`; see its README) from real simulator captures in `video/assets/`.
 
 | File | App Store Connect slot |
 | --- | --- |
@@ -66,6 +66,7 @@ Rendered by the fframes project in `video/` (`ASSET=header|search|shot-6.3-N|sho
 | `02-search-results-3840x2560.png` | Header and Search Results → Search Results |
 | `03-iphone-6.3-screenshot-{1,2,3}-1206x2622.png` | iPhone screenshots, the slot shown first (6.3"), in order |
 | `05-iphone-6.9-screenshot-{1,2,3}-1320x2868.png` | 6.9" display, only if Media Manager asks for it |
+| `06-iphone-duo-screenshot-{1,2,3}-1398x2034.png` | iPhone Duo (optional), same captions and captures as 6.3" |
 
 Captions: "The arrow points / to the Qibla." (Jakarta, 65°) · "A compass ring / that turns with you." (London, 119°) · "A gentle tap / when you're facing it." (a point due south of Mecca, 0°).
 
