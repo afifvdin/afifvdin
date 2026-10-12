@@ -1,6 +1,6 @@
-# Kibla preview video
+# Kybla preview video
 
-fframes project that renders a 16 s preview of Kibla: the app's screen (arrow, compass ring, degrees off)
+fframes project that renders a 16 s preview of Kybla: the app's screen (arrow, compass ring, degrees off)
 recreated from a simulator capture, with the phone turning toward the Qibla and captions on top.
 The simulator has no compass, so this is a recreation, not a screen recording; App Store
 previews need real footage, so use this for the website, not App Store Connect.
@@ -22,11 +22,11 @@ VARIANT=framed ./target/release/video render -o ../preview-framed-992x2028.mp4
 
 `VARIANT=framed` puts the screen inside the real iPhone frame on the website card colour
 (`TINT` in `src/lib.rs`, keep it in sync with `tint` in `src/data/apps.ts`). Website copies
-(`public/apps/kibla/`):
+(`public/apps/kybla/`):
 
 ```bash
-ffmpeg -i ../preview-framed-992x2028.mp4 -vf scale=600:-2 -c:v libx264 -crf 24 -preset slow -pix_fmt yuv420p -an -movflags +faststart ../../../public/apps/kibla/preview.mp4
-ffmpeg -ss 10 -i ../preview-framed-992x2028.mp4 -frames:v 1 -vf scale=600:-2 -q:v 3 ../../../public/apps/kibla/poster.jpg
+ffmpeg -i ../preview-framed-992x2028.mp4 -vf scale=600:-2 -c:v libx264 -crf 24 -preset slow -pix_fmt yuv420p -an -movflags +faststart ../../../public/apps/kybla/preview.mp4
+ffmpeg -ss 10 -i ../preview-framed-992x2028.mp4 -frames:v 1 -vf scale=600:-2 -q:v 3 ../../../public/apps/kybla/poster.jpg
 ```
 
 `arrow.png` and `bubble.png` are the app's SF Symbols (`arrow.up` bold 160 pt, `text.bubble`

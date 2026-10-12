@@ -1,4 +1,4 @@
-//! Kibla preview: the app's screen (arrow, compass ring, degrees off) recreated at iPhone 17
+//! Kybla preview: the app's screen (arrow, compass ring, degrees off) recreated at iPhone 17
 //! Pro Max proportions, with the phone turning toward the Qibla, and captions in the top of the screen.
 use fframes::{AudioMap, Color, Duration, FFramesContext, Frame, Svgr, Transform, Video, animation::Easing};
 
@@ -142,7 +142,7 @@ fn screen<'a>(frame: &Frame, ctx: &FFramesContext<'a, '_>) -> Svgr<'a> {
             let (rise, opacity) = fade(frame, TITLE_AT, 999.);
             fframes::svgr!(
                 <g opacity={opacity} transform={Transform::translate(0, rise)}>
-                    <text x={cx} y="380" font-family={SERIF} font-size="84" fill={INK} text-anchor="middle">"Kibla"</text>
+                    <text x={cx} y="380" font-family={SERIF} font-size="84" fill={INK} text-anchor="middle">"Kybla"</text>
                     <text x={cx} y="450" font-family={SERIF} font-size="44" fill={INK} opacity={SECONDARY} text-anchor="middle">"Find the Qibla, anywhere."</text>
                 </g>
             )

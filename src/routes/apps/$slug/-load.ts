@@ -2,7 +2,10 @@ import { notFound, redirect } from "@tanstack/react-router";
 import { getApp } from "@/data/apps";
 
 // Old slugs of renamed apps, so links already shared keep working.
-const renamed: Record<string, string> = { "db-studio": "qprofiler" };
+const renamed: Record<string, string> = {
+  "db-studio": "qprofiler",
+  kibla: "kybla",
+};
 
 export function loadApp({ params }: { params: { slug: string } }) {
   const target = renamed[params.slug];
