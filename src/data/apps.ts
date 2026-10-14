@@ -153,7 +153,7 @@ export const apps: App[] = [
     slug: "kave",
     name: "Kave",
     tagline: "Your keystrokes, as little keycaps",
-    platform: "macOS",
+    platform: "Apple Silicon, macOS 14+",
     status: "open-source",
     year: 2026,
     icon: "/apps/kave/icon.png",
@@ -172,10 +172,15 @@ export const apps: App[] = [
       "Lives in the menu bar, never steals a click",
     ],
     primary: {
-      label: "View on GitHub",
-      href: "https://github.com/afifvdin/kave",
+      label: "Download for Mac",
+      href: "https://github.com/afifvdin/kave/releases/latest",
     },
-    links: [],
+    links: [
+      {
+        label: "Source",
+        href: "https://github.com/afifvdin/kave",
+      },
+    ],
     media: {
       type: "video",
       src: "/apps/kave/preview.mp4",
