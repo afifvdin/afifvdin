@@ -45,42 +45,6 @@ export const statusLabel: Record<AppStatus, string> = {
 
 export const apps: App[] = [
   {
-    slug: "teachable-machine",
-    name: "Teachable Machine",
-    tagline: "Train an image classifier in your browser",
-    platform: "Web",
-    status: "live",
-    year: 2026,
-    icon: "/apps/teachable-machine/icon.svg",
-    tint: "#e7def6",
-    description: [
-      "An open-source take on Google's Teachable Machine. Record samples with your webcam or drop in images, train in seconds, and export a TensorFlow.js model.",
-      "Everything runs on-device. Your images never leave the browser.",
-    ],
-    features: [
-      "Webcam capture or image upload per class",
-      "MobileNetV2 embeddings + a small dense head, so training takes seconds",
-      "Live preview from webcam or file",
-      "Export a standalone TensorFlow.js model",
-      "Save and open projects as .zip",
-    ],
-    primary: {
-      label: "Open app",
-      href: "https://teachablemachine.afifvdin.com",
-    },
-    links: [
-      {
-        label: "Source",
-        href: "https://github.com/afifvdin/teachable-machine",
-      },
-    ],
-    media: {
-      type: "image",
-      src: "/apps/teachable-machine/screenshot.jpg",
-      alt: "Teachable Machine landing page: Teach a machine to see your world",
-    },
-  },
-  {
     slug: "discreet-tasbeeh",
     name: "Discreet Tasbeeh",
     tagline: "A quiet, private dhikr counter",
